@@ -398,3 +398,37 @@
     {
         "question": "Oro parece, plata no es y el que no lo adivine un tonto es",
         "response": "Un platano"
+    },
+    {
+        "question": "Círculo bien redondo al que si le pegas, das un brinco del susto",
+        "response": "Un tambor"
+    },
+    {
+        "question": "Un caballo blanco entró en el Mar Negro. ¿Cómo salió?",
+        "response": "Salió mojado"
+    },
+    {
+        "question": "Si un tren eléctrico va de Norte a Sur, ¿Hacia qué lado echará el humo?",
+        "response": "Es eléctrico, no echa humo"
+    },
+    {
+       "question": "Tiene 4 letras, empieza por C y termina por O y esta en la parte trasera",
+        "response": "El codo"
+    },
+    {
+       "question": "Se estrella un avión y mueren todos, justo en la frontera entre España y Portugal ¿A que Hospital tienen que llevar a los supervivientes? ",
+        "response": "No hay supervivientes"
+    },
+    {
+       "question": "Este banco está ocupado por un padre y por un hijo, el padre se llama Juan y el hijo ya te lo he dicho",
+        "response": "Esteban"
+    },
+    {
+       "question": "Algunos meses tienen 31 días, otros solo 30.¿Cuantos tienen 28 días?",
+        "response": "Todos"
+    },
+    {
+       "question": "No lo puedes ver, pero no puedes vivir sin él. ¿Qué es?",
+       "response": "El aire"
+}
+      ]
