@@ -298,3 +298,103 @@ if (user.antispam2 && isROwner) return
 let time = global.db.data.users[m.sender].spam + 3000
 if (new Date - global.db.data.users[m.sender].spam < 3000) return console.log(`[ SPAM ]`) 
 global.db.data.users[m.sender].spam = new Date * 1
+}
+if (m.chat in global.db.data.chats || m.sender in global.db.data.users) {
+let chat = global.db.data.chats[m.chat]
+let user = global.db.data.users[m.sender]
+let setting = global.db.data.settings[this.user.jid]
+if (name != 'group-unbanchat.js' && chat?.isBanned)
+return 
+if (name != 'owner-unbanuser.js' && user?.banned)
+return
+if (name != 'owner-unbanbot.js' && setting?.banned)
+return
+}
+let hl = _prefix 
+let adminMode = global.db.data.chats[m.chat].modoadmin
+let mini = `${plugins.botAdmin || plugins.admin || plugins.group || plugins || noPrefix || hl ||  m.text.slice(0, 1) == hl || plugins.command}`
+if (adminMode && !isOwner && !isROwner && m.isGroup && !isAdmin && mini) return   
+if (plugin.rowner && plugin.owner && !(isROwner || isOwner)) { 
+fail('owner', m, this)
+continue
+}
+if (plugin.rowner && !isROwner) { 
+fail('rowner', m, this)
+continue
+}
+if (plugin.owner && !isOwner) { 
+fail('owner', m, this)
+continue
+}
+if (plugin.mods && !isMods) { 
+fail('mods', m, this)
+continue
+}
+if (plugin.premium && !isPrems) { 
+fail('premium', m, this)
+continue
+}
+if (plugin.group && !m.isGroup) { 
+fail('group', m, this)
+continue
+} else if (plugin.botAdmin && !isBotAdmin) { 
+fail('botAdmin', m, this)
+continue
+} else if (plugin.admin && !isAdmin) { 
+fail('admin', m, this)
+continue
+}
+if (plugin.private && m.isGroup) {
+fail('private', m, this)
+continue
+}
+if (plugin.register == true && _user.registered == false) { 
+fail('unreg', m, this)
+continue
+}
+m.isCommand = true
+let xp = 'exp' in plugin ? parseInt(plugin.exp) : 17 
+if (xp > 200)
+m.reply('chirrido -_-')
+else
+m.exp += xp
+if (!isPrems && plugin.yenes && global.db.data.users[m.sender].yenes < plugin.yenes * 1) {
+conn.reply(m.chat, `Se agotaron tus *💴 Yenes*`, m, fake)
+continue
+}
+let extra = {
+match,
+usedPrefix,
+noPrefix,
+_args,
+args,
+command,
+text,
+conn: this,
+participants,
+groupMetadata,
+user,
+bot,
+isROwner,
+isOwner,
+isRAdmin,
+isAdmin,
+isBotAdmin,
+isPrems,
+chatUpdate,
+__dirname: ___dirname,
+__filename
+}
+try {
+await plugin.call(this, m, extra)
+if (!isPrems)
+m.yenes = m.yenes || plugin.yenes || false
+} catch (e) {
+m.error = e
+console.error(e)
+if (e) {
+let text = format(e)
+for (let key of Object.values(global.APIKeys))
+text = text.replace(new RegExp(key, 'g'), 'Administrador')
+m.reply(text)
+}
