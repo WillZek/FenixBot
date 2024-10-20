@@ -98,3 +98,103 @@ chat.detect = true
 if (!('onlyLatinos' in chat))
 chat.onlyLatinos = true 
 if (!('antiBot' in chat))
+chat.antiBot = false
+if (!('antiBot2' in chat))
+chat.antiBot2 = false
+if (!('modoadmin' in chat))                     
+chat.modoadmin = false   
+if (!('antiLink' in chat))
+chat.antiLink = false
+if (!('modohorny' in chat))
+chat.modohorny = false
+if (!('reaction' in chat))
+chat.reaction = false
+if (!('simi' in chat))
+chat.simi = false
+if (!('antiver' in chat))
+chat.antiver = false
+if (!('delete' in chat))
+chat.delete = false
+if (!isNumber(chat.expired))
+chat.expired = 0
+} else
+global.db.data.chats[m.chat] = {
+isBanned: false,
+welcome: true,
+delete: false,
+onlyLatinos: false,
+audios: false,
+detect: true,
+antiBot: false,
+antiBot2: false,
+modoadmin: false,
+antiLink: false,
+simi: false,
+antiver: false,
+modohorny: false, 
+reaction: false,
+expired: 0, 
+}
+var settings = global.db.data.settings[this.user.jid]
+if (typeof settings !== 'object') global.db.data.settings[this.user.jid] = {}
+if (settings) {
+if (!('self' in settings)) settings.self = false
+if (!('restrict' in settings)) settings.restrict = false
+if (!('jadibotmd' in settings)) settings.jadibotmd = true
+if (!('autobio' in settings)) settings.autobio = false
+if (!('antiPrivate' in settings)) settings.antiPrivate = false
+if (!('autoread' in settings)) settings.autoread = false
+if (!('autoread2' in settings)) settings.autoread2 = false
+if (!('antiSpam' in settings)) settings.antiSpam = false
+} else global.db.data.settings[this.user.jid] = {
+self: false,
+restrict: false,
+jadibotmd: true,
+autobio: false,
+antiPrivate: false,
+autoread: false,
+autoread2: false,
+antiSpam: true,
+status: 0
+}
+} catch (e) {
+console.error(e)
+}
+if (opts['nyimak'])  return
+if (!m.fromMe && opts['self'])  return
+if (opts['swonly'] && m.chat !== 'status@broadcast')  return
+if (typeof m.text !== 'string')
+m.text = ''
+
+let _user = global.db.data && global.db.data.users && global.db.data.users[m.sender]
+
+const isROwner = [conn.decodeJid(global.conn.user.id), ...global.owner.map(([number]) => number)].map(v => v.replace(/[^0-9]/g, '') + '@s.whatsapp.net').includes(m.sender)
+const isOwner = isROwner || m.fromMe
+const isMods = isOwner || global.mods.map(v => v.replace(/[^0-9]/g, '') + '@s.whatsapp.net').includes(m.sender)
+const isPrems = isROwner || global.prems.map(v => v.replace(/[^0-9]/g, '') + '@s.whatsapp.net').includes(m.sender) || _user.prem == true
+
+if (opts['queque'] && m.text && !(isMods || isPrems)) {
+let queque = this.msgqueque, time = 1000 * 5
+const previousID = queque[queque.length - 1]
+queque.push(m.id || m.key.id)
+setInterval(async function () {
+if (queque.indexOf(previousID) === -1) clearInterval(this)
+await delay(time)
+}, time)
+}
+
+//if (m.isBaileys) return 
+if (m.isBaileys || isBaileysFail && m?.sender === this?.this?.user?.jid) {
+return
+}
+m.exp += Math.ceil(Math.random() * 10)
+
+let usedPrefix
+
+const groupMetadata = (m.isGroup ? ((conn.chats[m.chat] || {}).metadata || await this.groupMetadata(m.chat).catch(_ => null)) : {}) || {}
+const participants = (m.isGroup ? groupMetadata.participants : []) || []
+const user = (m.isGroup ? participants.find(u => conn.decodeJid(u.id) === m.sender) : {}) || {}
+const bot = (m.isGroup ? participants.find(u => conn.decodeJid(u.id) == this.user.jid) : {}) || {}
+const isRAdmin = user?.admin == 'superadmin' || false
+const isAdmin = isRAdmin || user?.admin == 'admin' || false
+const isBotAdmin = bot?.admin || false
