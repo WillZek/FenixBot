@@ -198,3 +198,103 @@ const bot = (m.isGroup ? participants.find(u => conn.decodeJid(u.id) == this.use
 const isRAdmin = user?.admin == 'superadmin' || false
 const isAdmin = isRAdmin || user?.admin == 'admin' || false
 const isBotAdmin = bot?.admin || false
+
+const ___dirname = path.join(path.dirname(fileURLToPath(import.meta.url)), './plugins')
+for (let name in global.plugins) {
+let plugin = global.plugins[name]
+if (!plugin)
+continue
+if (plugin.disabled)
+continue
+const __filename = join(___dirname, name)
+if (typeof plugin.all === 'function') {
+try {
+await plugin.all.call(this, m, {
+chatUpdate,
+__dirname: ___dirname,
+__filename
+})
+} catch (e) {
+console.error(e)
+}}
+if (!opts['restrict'])
+if (plugin.tags && plugin.tags.includes('admin')) {
+continue
+}
+const str2Regex = str => str.replace(/[|\\{}()[\]^$+*?.]/g, '\\$&')
+let _prefix = plugin.customPrefix ? plugin.customPrefix : conn.prefix ? conn.prefix : global.prefix
+let match = (_prefix instanceof RegExp ? 
+[[_prefix.exec(m.text), _prefix]] :
+Array.isArray(_prefix) ?
+_prefix.map(p => {
+let re = p instanceof RegExp ?
+p :
+new RegExp(str2Regex(p))
+return [re.exec(m.text), re]
+}) :
+typeof _prefix === 'string' ?
+[[new RegExp(str2Regex(_prefix)).exec(m.text), new RegExp(str2Regex(_prefix))]] :
+[[[], new RegExp]]
+).find(p => p[1])
+if (typeof plugin.before === 'function') {
+if (await plugin.before.call(this, m, {
+match,
+conn: this,
+participants,
+groupMetadata,
+user,
+bot,
+isROwner,
+isOwner,
+isRAdmin,
+isAdmin,
+isBotAdmin,
+isPrems,
+chatUpdate,
+__dirname: ___dirname,
+__filename
+}))
+continue
+}
+if (typeof plugin !== 'function')
+continue
+if ((usedPrefix = (match[0] || '')[0])) {
+let noPrefix = m.text.replace(usedPrefix, '')
+let [command, ...args] = noPrefix.trim().split` `.filter(v => v)
+args = args || []
+let _args = noPrefix.trim().split` `.slice(1)
+let text = _args.join` `
+command = (command || '').toLowerCase()
+let fail = plugin.fail || global.dfail
+let isAccept = plugin.command instanceof RegExp ? 
+                    plugin.command.test(command) :
+                    Array.isArray(plugin.command) ?
+                        plugin.command.some(cmd => cmd instanceof RegExp ? 
+                            cmd.test(command) :
+cmd === command) :
+typeof plugin.command === 'string' ? 
+plugin.command === command :
+false
+
+if (!isAccept) {
+continue
+}
+m.plugin = name
+if (m.chat in global.db.data.chats || m.sender in global.db.data.users) {
+let chat = global.db.data.chats[m.chat]
+let user = global.db.data.users[m.sender]
+if (!['owner-unbanchat.js'].includes(name) && chat && chat.isBanned && !isROwner) return // Except this
+if (name != 'owner-unbanchat.js' && name != 'owner-exec.js' && name != 'owner-exec2.js' && name != 'tool-delete.js' && chat?.isBanned && !isROwner) return 
+if (m.text && user.banned && !isROwner) {
+if (user.antispam > 2) return
+m.reply(`🚫 Está baneado(a), no puede usar los comandos de este bot!\n\n${user.bannedReason ? `\n💌 *Motivo:* 
+${user.bannedReason}` : '💌 *Motivo:* Sin Especificar'}\n\n⚠️ *Si este bot es cuenta oficial y tiene evidencia que respalde que este mensaje es un error, puede exponer su caso en:*\n\n🤍 ${asistencia}`)
+user.antispam++        
+return
+}
+
+//Antispam 2                
+if (user.antispam2 && isROwner) return
+let time = global.db.data.users[m.sender].spam + 3000
+if (new Date - global.db.data.users[m.sender].spam < 3000) return console.log(`[ SPAM ]`) 
+global.db.data.users[m.sender].spam = new Date * 1
