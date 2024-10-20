@@ -397,4 +397,104 @@ let text = format(e)
 for (let key of Object.values(global.APIKeys))
 text = text.replace(new RegExp(key, 'g'), 'Administrador')
 m.reply(text)
+} finally {
+if (typeof plugin.after === 'function') {
+try {
+await plugin.after.call(this, m, extra)
+} catch (e) {
+console.error(e)
+}}
+if (m.yenes)
+conn.reply(m.chat, `Utilizaste *${+m.yenes}* 💴`, m, fake)
+}
+break
+}}
+} catch (e) {
+console.error(e)
+} finally {
+if (opts['queque'] && m.text) {
+const quequeIndex = this.msgqueque.indexOf(m.id || m.key.id)
+if (quequeIndex !== -1)
+                this.msgqueque.splice(quequeIndex, 1)
+}
+let user, stats = global.db.data.stats
+if (m) { let utente = global.db.data.users[m.sender]
+if (utente.muto == true) {
+let bang = m.key.id
+let cancellazzione = m.key.participant
+await conn.sendMessage(m.chat, { delete: { remoteJid: m.chat, fromMe: false, id: bang, participant: cancellazzione }})
+}
+if (m.sender && (user = global.db.data.users[m.sender])) {
+user.exp += m.exp
+user.yenes -= m.yenes * 1
+}
+
+let stat
+if (m.plugin) {
+let now = +new Date
+if (m.plugin in stats) {
+stat = stats[m.plugin]
+if (!isNumber(stat.total))
+stat.total = 1
+if (!isNumber(stat.success))
+stat.success = m.error != null ? 0 : 1
+if (!isNumber(stat.last))
+stat.last = now
+if (!isNumber(stat.lastSuccess))
+stat.lastSuccess = m.error != null ? 0 : now
+} else
+stat = stats[m.plugin] = {
+total: 1,
+success: m.error != null ? 0 : 1,
+last: now,
+lastSuccess: m.error != null ? 0 : now
+}
+stat.total += 1
+stat.last = now
+if (m.error == null) {
+stat.success += 1
+stat.lastSuccess = now
+}}}
+
+try {
+if (!opts['noprint']) await (await import(`./lib/print.js`)).default(m, this)
+} catch (e) { 
+console.log(m, m.quoted, e)}
+let settingsREAD = global.db.data.settings[this.user.jid] || {}  
+if (opts['autoread']) await this.readMessages([m.key])
+if (settingsREAD.autoread2) await this.readMessages([m.key])  
+// if (settingsREAD.autoread2 == 'true') await this.readMessages([m.key])    
+// await conn.sendPresenceUpdate('composing', m.chat)
+// this.sendPresenceUpdate('recording', m.chat)
+
+if (db.data.chats[m.chat].reaction && m.text.match(/(ción|dad|aje|oso|izar|mente|pero|tion|age|ous|ate|and|but|ify|ai|yaemori|a|s)/gi)) {
+let emot = pickRandom(["🌸", "😃", "😄", "😁", "😆", "🍓", "😅", "😂", "🤣", "🥲", "☺️", "😊", "😇", "🙂", "🙃", "😉", "😌", "😍", "🥰", "😘", "😗", "😙", "🌺", "🌸", "😚", "😋", "😛", "😝", "😜", "🤪", "🤨", "🌟", "🤓", "😎", "🥸", "🤩", "🥳", "😏", "💫", "😞", "😔", "😟", "😕", "🙁", "☹️", "😣", "😖", "😫", "😩", "🥺", "😢", "😭", "😤", "😠", "😡", "🤬", "🤯", "😳", "🥵", "🥶", "😶‍🌫️", "😱", "😨", "😰", "😥", "😓", "🤗", "🤔", "🫣", "🤭", "🤖", "🍭", "🤫", "🫠", "🤥", "😶", "📇", "😐", "💧", "😑", "🫨", "😬", "🙄", "😯", "😦", "😧", "😮", "😲", "🥱", "😴", "🤤", "😪", "😮‍💨", "😵", "😵‍💫", "🤐", "🥴", "🤢", "🤮", "🤧", "😷", "🤒", "🤕", "🤑", "🤠", "😈", "👿", "👺", "🧿", "🌩", "👻", "😺", "😸", "😹", "😻", "😼", "😽", "🙀", "😿", "😾", "🫶", "👍", "✌️", "🙏", "🫵", "🤏", "🤌", "☝️", "🖕", "🙏", "🫵", "🫂", "🐱", "🤹‍♀️", "🤹‍♂️", "🗿", "✨", "⚡", "🔥", "🌈", "🩷", "❤️", "🧡", "💛", "💚", "🩵", "💙", "💜", "🖤", "🩶", "🤍", "🤎", "💔", "❤️‍🔥", "❤️‍🩹", "❣️", "💕", "💞", "💓", "💗", "💖", "💘", "💝", "🌸", "👊", "⚡️", "💋", "🫰", "💅", "👑", "🐣", "🐤", "🐈"])
+if (!m.fromMe) return this.sendMessage(m.chat, { react: { text: emot, key: m.key }})
+}
+function pickRandom(list) { return list[Math.floor(Math.random() * list.length)]}
+}}
+
+export async function deleteUpdate(message) {
+try {
+const { fromMe, id, participant } = message
+if (fromMe) return 
+let msg = this.serializeM(this.loadMessage(id))
+let chat = global.db.data.chats[msg?.chat] || {}
+if (!chat?.delete) return 
+if (!msg) return 
+if (!msg?.isGroup) return 
+const antideleteMessage = `╭•┈•〘❌ 𝗔𝗡𝗧𝗜 𝗗𝗘𝗟𝗘𝗧𝗘 ❌〙•┈• ◊
+│❒ 𝗨𝗦𝗨𝗔𝗥𝗜𝗢:
+│• @${participant.split`@`[0]}
+│
+│❒ 𝗔𝗰𝗮𝗯𝗮 𝗱𝗲 𝗲𝗹𝗶𝗺𝗶𝗻𝗮𝗿 𝘂𝗻 𝗺𝗲𝗻𝘀𝗮𝗷𝗲
+│𝗿𝗲𝗲𝗻𝘃𝗶𝗮𝗻𝗱𝗼... ⏱️
+╰•┈•〘❌ 𝗔𝗡𝗧𝗜 𝗗𝗘𝗟𝗘𝗧𝗘 ❌〙•┈• ◊`.trim();
+await this.sendMessage(msg.chat, {text: antideleteMessage, mentions: [participant]}, {quoted: msg})
+this.copyNForward(msg.chat, msg).catch(e => console.log(e, msg))
+} catch (e) {
+console.error(e)
+}}
+
+global.dfail = (type, m, conn) => {
 }
