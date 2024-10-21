@@ -43,7 +43,7 @@ global.rwait = '🕒'
 global.done = '✅'
 global.error = '✖️'
 
-//Emojis determinado de Akari 
+//Emojis determinado de Fenix 
 global.emoji = '💛'
 global.emoji2 = '💛'
 global.emoji3 = '✨️'
