@@ -9,7 +9,7 @@ conn.reply(m.chat, `💛 ¡Hola! Soy Fenix, en que puedo ayudarte hoy?\n\n✰ Us
 }
 
 if (chat.isBaneed) return
-if (/^akari|watanabe$/i.test(m.text)) {
+if (/^fenix|watanabe$/i.test(m.text)) {
 conn.reply(m.chat, `> *Hola soy FenixBot y fui creado por*\n> *WillZek* \n\n> Escribe *.menu* para ver mis comandos, recuerda no hagas spam a la bot, Disfrute de *FenixBot*\n\nPσɯҽɾҽԃ Bყ Team Brawlights`, m, rcanal, )
 }
 
