@@ -44,7 +44,7 @@ global.packname = 'FenixBot - MD'
 global.botname = 'Fenix - MD 💛'
 global.wm = 'FenixBσƚ-MD 💛'
 global.author = 'By WillZek'
-global.dev = 'Pσɯҽɾҽԃ Bყ Tҽαɱ Brawlights'
+global.dev = 'Pσɯҽɾҽԃ Bყ Tҽαɱ Ⴆɾαɯʅιɠԋƚʂ
 global.textbot = 'Fenix : WillZek 💛'
 
 //*─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*
