@@ -9,13 +9,13 @@
 
 
 <p align="center">
-  <img src="https://readme-typing-svg.demolab.com/?lines= WillZek+lanzó ;Nueva+versión+1.9.0 ; By:+Niño Piña ; y+𝐁𝐫𝐚𝐰𝐥𝐢𝐠𝐡𝐭𝐬+𝐓𝐞𝐚𝐦;CrowBot+El+Mejor+Bot!&font=Fira%20Code&center=true&width=380&height=50&duration=2000&pause=500" alt="Example Usage - README Typing SVG">
+  <img src="https://readme-typing-svg.demolab.com/?lines= WillZek+lanzó ;Nueva+versión+1.9.0 ; By:+Niño Piña ; y+𝐁𝐫𝐚𝐰𝐥𝐢𝐠𝐡𝐭𝐬+𝐓𝐞𝐚𝐦;FenixBot+El+Mejor+Bot!&font=Fira%20Code&center=true&width=380&height=50&duration=2000&pause=500" alt="Example Usage - README Typing SVG">
 </p>
 
 
 
 <a href="https://www.atom.bio/crowbot-md/">
-<img src="https://img.shields.io/badge/CrowBot_Accounts-000000%7D?style=for-the-badge&logo=biolink&logoColor=white">
+<img src="https://img.shields.io/badge/FenixBot_Accounts-000000%7D?style=for-the-badge&logo=biolink&logoColor=white">
 </a>
 
 
@@ -24,8 +24,9 @@
 
 #### Creador: Niño Piña 🫅
 #### Realizado con: B̷r̷a̷w̷l̷i̷g̷h̷t̷s̷ T̷e̷a̷m̷ 💛
+#### FenixBot: Bot VIP
 
-### CONTACTOS 💻
+### CONTACTOS ☄️
 <p>
 
 <a
