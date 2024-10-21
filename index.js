@@ -23,7 +23,7 @@ if (collaborators.hasOwnProperty(key)) {
 activeCollaborators += collaborators[key] + ', '
 }}
 activeCollaborators = activeCollaborators.slice(0, -2);
-cfonts.say('Akari\nbot md', {
+cfonts.say('Fenix\nbot md', {
 align: 'center',           
 gradient: ['red', 'blue'] 
 })
