@@ -40,7 +40,7 @@ global.jadi = 'FenixJadiBot'
 
 //*─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*
 
-global.packname = 'Fenix Bσƚ - MD'
+global.packname = 'FenixBot - MD'
 global.botname = 'Fenix - MD 💛'
 global.wm = 'FenixBσƚ-MD 💛'
 global.author = 'By WillZek'
