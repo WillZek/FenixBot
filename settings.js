@@ -54,7 +54,7 @@ global.imagen2 = fs.readFileSync('./src/img/Menu2.jpg')
 global.imagen3 = fs.readFileSync('./src/img/Menu3.jpg')
 global.welcome = fs.readFileSync('./src/img/welcome.jpg')
 global.adios = fs.readFileSync('./src/img/adios.jpg')
-global.catalogo = fs.readFileSync('./src/img/Sisked.jpg')
+global.catalogo = fs.readFileSync('./src/img/Fenix.jpg')
 global.miniurl = fs.readFileSync('./src/img/miniurl.jpg')
 global.avatar = fs.readFileSync('./src/img/avatar_contact.jpg')
 
