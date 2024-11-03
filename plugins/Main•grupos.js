@@ -17,7 +17,7 @@ let grupos = `*Hola!, te invito a unirte a los grupos oficiales de FenixBot para
 
 > ${dev}`
 
-await conn.sendFile(m.chat, imagen2, "akari.jpg", grupos, m, null, rcanal)
+await conn.sendFile(m.chat, imagen2, "fenix.jpg", grupos, m, null, rcanal)
 
 await m.react(emojis)
 
