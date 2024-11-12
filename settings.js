@@ -9,15 +9,12 @@ import moment from 'moment-timezone'
 
 //*─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*
 
-//BETA: Si quiere evitar escribir el número que será bot en la consola, agregué desde aquí entonces:
-//Sólo aplica para opción 2 (ser bot con código de texto de 8 digitos)
-global.botNumberCode = '' //Ejemplo: +50557865603
-global.confirmCode = ''
-
-//*─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*
-
 global.owner = [
-   ['50557865603', 'Creador 👑', true],
+   ['50557865603', 'Creador WillZek💛', true],
+   ['50557865603', 'CrowBot', true],
+   ['5493876639332', 'Editor Ian🔥', true],
+   ['584120346669', 'Editor ⁱᵃᵐ|𝔇ĕ𝐬†𝓻⊙γ𒆜', true],
+   ['584241836217', ' Editor Prak Harper', true],
 ]
 
 //*─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*
@@ -27,54 +24,35 @@ global.prems = []
 
 //*─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*
 
-//cambiar a true si el bot detecta sus propios comandos.
-global.isBaileysFail = false
-global.libreria = 'Baileys'
-global.baileys = 'V 6.7.8'
-global.vs = '1.0.1'
-global.languaje = 'Español'
-global.nameqr = 'Fenix Bot - MD'
-global.namebot = 'Feniz Bσƚ - MD'
-global.sessions = 'FenixSession'
-global.jadi = 'FenixJadiBot'
+global.packname = '⪛✰ 𝗖𝗿𝗼𝘄 𝗕𝗼𝘁 - 𝗠𝗗 ✰⪜'
+global.botname = '𝗖𝗿𝗼𝘄 𝗕𝗼𝘁 - 𝗠𝗗'
+global.wm = '𝗡𝗶𝗻̃𝗼 𝗽𝗶𝗻̃𝗮 𝗯𝗼𝘁 - 𝗠𝗗'
+global.author = '𝗡𝗶𝗻̃𝗼 𝗽𝗶𝗻̃𝗮'
+global.dev = '𝗧𝗵𝗲𝗖𝗿𝗼𝘄𝗕𝗼𝘁'
+global.textbot = '𝗖𝗿𝗼𝘄 𝗯𝗼𝘁 : 𝗡𝗶𝗻̃𝗼 𝗽𝗶𝗻̃𝗮'
+global.vs = '1.1.3'
 
 //*─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*
 
-global.packname = 'FenixBot - MD'
-global.botname = 'Fenix - MD 💛'
-global.wm = 'FenixBσƚ-MD 💛'
-global.author = 'By WillZek'
-global.dev = 'Pσɯҽɾҽԃ Bყ Tҽαɱ Ⴆɾαɯʅιɠԋƚʂ'
-global.textbot = 'Fenix : WillZek 💛'
+global.imagen1 = fs.readFileSync('./Menu.jpg')
+global.fantasyVid = ['./media/menus/Menuvid1.mp4', './media/menus/Menuvid2.mp4', './media/menus/Menuvid3.mp4']
+global.imagen2 = fs.readFileSync('./Menu2.jpg')
+global.imagen3 = fs.readFileSync('./Menu3.jpg')
+global.welcome = fs.readFileSync('./media/welcome.jpg')
+global.adios = fs.readFileSync('./media/adios.jpg')
+global.catalogo = fs.readFileSync('./storage/img/catalogo1.jpg')
+global.ianurl = fs.readFileSync('./storage/img/crowurl.jpg')
 
 //*─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*
 
-global.imagen1 = fs.readFileSync('./src/img/Menu.jpg')
-global.imagen2 = fs.readFileSync('./src/img/Menu2.jpg')
-global.imagen3 = fs.readFileSync('./src/img/Menu3.jpg')
-global.welcome = fs.readFileSync('./src/img/welcome.jpg')
-global.adios = fs.readFileSync('./src/img/adios.jpg')
-global.catalogo = fs.readFileSync('./src/img/Fenix.jpg')
-global.miniurl = fs.readFileSync('./src/img/miniurl.jpg')
-global.avatar = fs.readFileSync('./src/img/avatar_contact.jpg')
-
-//*─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*
-
-global.grupo = 'https://chat.whatsapp.com/IO3kjd9ovw1Dm8pVUE2MgN'
-global.grupo2 = 'https://chat.whatsapp.com/Dqq7wgD6kFn16eOpQiWsxQ'
+global.grupo = 'https://chat.whatsapp.com/F0MiFkIWaQtLrZez9Xt2uu'
+global.grupo2 = 'https://chat.whatsapp.com/F0MiFkIWaQtLrZez9Xt2uu'
+global.grupo3 = 'https://chat.whatsapp.com/F0MiFkIWaQtLrZez9Xt2uu'
 global.channel = 'https://whatsapp.com/channel/0029VakfOZfHFxP7rNrUQk2d'
-global.md = 'https://github.com/WillZek/FenixBot' 
-global.yt = 'https://www.youtube.com/@ianalejandrook14x'
-global.tiktok = 'https://tiktok.com/@the_crow_legendario_bs'
-global.correo = 'ninopina10@gmail.com'
 
 //*─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*
 
-global.estilo = { key: {  fromMe: false, participant: `0@s.whatsapp.net`, ...(false ? { remoteJid: "543876577197-120363317332020195@g.us" } : {}) }, message: { orderMessage: { itemCount : -999999, status: 1, surface : 1, message: 'Bσƚ ԃҽ WԋαƚʂAρρ', orderTitle: 'Bang', thumbnail: catalogo, sellerJid: '0@s.whatsapp.net'}}}
-
-//*─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*
-
-global.esti = { key: {participant: `0@s.whatsapp.net`, ...(false ? { remoteJid: "6289643739077-1613049930@g.us" } : {})},message: {"videoMessage": { "title": `Aƙαɾι WαƚαɳαႦҽ`, "h": `Hmm`,'seconds': '99999', 'gifPlayback': 'true', 'caption': `Bσƚ ԃҽ WԋαƚʂAρρ`, 'jpegThumbnail': catalogo }}}
+global.estilo = { key: {  fromMe: false, participant: `0@s.whatsapp.net`, ...(false ? { remoteJid: "543876577197-120363317332020195@g.us" } : {}) }, message: { orderMessage: { itemCount : -999999, status: 1, surface : 1, message: '𝗧𝗵𝗲𝗖𝗿𝗼𝘄𝗕𝗼𝘁 💛', orderTitle: 'Bang', thumbnail: catalogo, sellerJid: '0@s.whatsapp.net'}}}
 
 //*─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*
 
@@ -86,14 +64,14 @@ global.moment = moment
 
 //*─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*
 
-global.multiplier = 69
-global.maxwarn = '3'
+global.multiplier = 69 
+global.maxwarn = '2' // máxima advertencias
 
 //*─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*
 
 let file = fileURLToPath(import.meta.url)
 watchFile(file, () => {
   unwatchFile(file)
-  console.log(chalk.redBright("Update 'settings.js'"))
+  console.log(chalk.redBright("Update 'config.js'"))
   import(`${file}?update=${Date.now()}`)
 })
