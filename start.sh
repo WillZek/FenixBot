@@ -186,4 +186,4 @@ echo -e "\e[36m
 
 
 echo -e "\033[01;32m\033[01mIniciando FenixBot 🌻🌸\nFenix Nankano - MD\n\033[0m"
-npm start
+npm star
