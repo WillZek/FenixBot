@@ -30,10 +30,10 @@
 },
 "repository": {
 "type": "git",
-"url": "git+https://github.com/WillZek/FenixBot.git"
+"url": "git+https://github.com/ianalejandrook15x/AkariBot-MD.git"
 },
 "bugs": {
-"url": "https://github.com/WillZek/FenixBot/issues"
+"url": "https://github.com/ianalejandrook15x/AkariBot-MD/issues"
 },
 "license": "GPL-3.0-or-later",
 "dependencies": {
