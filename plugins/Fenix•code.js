@@ -172,3 +172,26 @@ let handler = async (m, { conn: _conn, args, usedPrefix, command, isOwner }) => 
 
             conn.handler = handler.handler.bind(conn);
             conn.connectionUpdate = connectionUpdate.bind(conn);
+            conn.credsUpdate = saveCreds.bind(conn, true);
+
+            conn.ev.on('messages.upsert', conn.handler);
+            conn.ev.on('connection.update', conn.connectionUpdate);
+            conn.ev.on('creds.update', conn.credsUpdate);
+            isInit = false;
+            return true;
+        }
+        creloadHandler(false);
+    }
+    serbot();
+}
+
+handler.help = ['code'];
+handler.tags = ['serbot'];
+handler.command = ['serbot', 'serbotcode'];
+handler.rowner = false;
+
+export default handler;
+
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
