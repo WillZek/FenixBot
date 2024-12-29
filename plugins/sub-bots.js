@@ -198,3 +198,192 @@ let handler = async (_0x5dc7f8, {
               console.error("Error al cerrar la conexión WebSocket:", _0x3c69be);
             }
             _0x2b89c6.ev.removeAllListeners();
+            let _0x30798e = global.conns.indexOf(_0x2b89c6);
+            if (_0x30798e < 0x0) {
+              return;
+            }
+            delete global.conns[_0x30798e];
+            global.conns.splice(_0x30798e, 0x1);
+          }
+        };
+        const _0x469ed6 = _0xa9c63b?.["error"]?.["output"]?.['statusCode'] || _0xa9c63b?.["error"]?.["output"]?.['payload']?.["statusCode"];
+        if (_0x3d81f9 === 'close') {
+          console.log(_0x469ed6);
+          if (_0x469ed6 == 0x195) {
+            await _0x42f252.unlinkSync("./Alya-SubBots/" + _0x3f1d2c + "/creds.json");
+            return await _0x5dc7f8.reply("*🟢 REENVIAR NUEVAMENTE EL COMANDO....*");
+          }
+          if (_0x469ed6 === DisconnectReason.restartRequired) {
+            _0x55fb84();
+            return console.log("⚠️ CONEXIÓN REEMPLAZADA, SE HA ABIERTO OTRA NUEVA SESION, POR FAVOR, CIERRA LA SESIÓN ACTUAL PRIMERO");
+          } else {
+            if (_0x469ed6 === DisconnectReason.loggedOut) {
+              sleep(0xfa0);
+              return _0x5dc7f8.reply("🔴 *LA CONEXIÓN SE HA CERRADO, TENDRAS QUE VOLVER A CONECTARSE USANDO:*\n#deletesesion (Para borrar los datos y poder volver a solita el QR o el code)");
+            } else {
+              if (_0x469ed6 == 0x1ac) {
+                await _0x47328f(false);
+                return _0x5dc7f8.reply("🟡 *LA CONEXIÓN SE HA CERRADO DE MANERA INESPERADA, INTENTAREMOS RECONECTAR...*");
+              } else {
+                if (_0x469ed6 === DisconnectReason.connectionLost) {
+                  await _0x55fb84();
+                  return console.log("⚠️ CONEXIÓN PERDIDA CON EL SERVIDOR, RECONECTANDO...");
+                } else {
+                  if (_0x469ed6 === DisconnectReason.badSession) {
+                    return await _0x5dc7f8.reply("🔴 *LA CONEXIÓN SE HA CERRADO, DEBERÁ DE CONECTARSE MANUALMENTE USANDO EL COMANDO #serbot Y REESCANEAR EL NUEVO CÓDIGO QR*");
+                  } else {
+                    if (_0x469ed6 === DisconnectReason.timedOut) {
+                      await _0x47328f(false);
+                      return console.log("⌛ TIEMPO DE CONEXIÓN AGOTADO, RECONECTANDO...");
+                    } else {
+                      console.log("⚠️❗ RAZON DE DESCONEXIÓN DESCONOCIDA: " + (_0x469ed6 || '') + " >> " + (_0x3d81f9 || ''));
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+        if (global.db.data == null) {
+          loadDatabase();
+        }
+        if (_0x3d81f9 == "open") {
+          _0x2b89c6.isInit = true;
+          global.conns.push(_0x2b89c6);
+          await _0x46fb82.sendMessage(_0x5dc7f8.chat, {
+            'text': _0x26550f[0x0] ? "*✅ Ya esta conectado!! Por favor espere se esta cargador los mensajes.....*" : "*Conectado exitosamente con WhatsApp ✅*\n\n*💻 Bot:* +" + _0x5dc7f8.sender.split`@`[0x0] + "\n*👤 Dueño:* " + (_0x5dc7f8.pushName || "Anónimo") + "\n\n*Nota: Esto es temporal*\nSi el Bot principal se reinicia o se desactiva, todos los sub bots tambien lo haran\n\n> *Unirte a nuestro canal para informarte de todas la Actualizaciónes/novedades sobre el bot*\n" + nna2
+          }, {
+            'quoted': _0x5dc7f8
+          });
+          let _0x128aff = ("*Se detectó un nuevo Sub-Bot conectado 💻✨*\n\n*✨ Bot :* wa.me/" + _0x5dc7f8.sender.split`@`[0x0] + "\n*👤 Dueño :* " + (_0x5dc7f8.pushName || 'Anónimo') + "\n*🔑 Método de conexión :* " + (_0x2b7f1c ? "Código de 8 dígitos" : "Código QR") + "\n*💻 Navegador :* " + (_0x2b7f1c ? "Ubuntu" : "Chrome") + "\n").trim();
+          let _0x3735ba = await _0x2b89c6.profilePictureUrl(_0x156f14, "image")["catch"](_0x35357a => imageUrl.getRandom());
+          await sleep(0xbb8);
+          await _0x46fb82.sendMessage(ch.ch1, {
+            'text': _0x128aff,
+            'contextInfo': {
+              'externalAdReply': {
+                'title': "【 📢 Notificación General 📢 】",
+                'body': "🥳 ¡Nuevo Sub-Bot conectado!",
+                'thumbnailUrl': _0x3735ba,
+                'sourceUrl': [nna, nna2, nn, md, yt, tiktok].getRandom(),
+                'mediaType': 0x1,
+                'showAdAttribution': false,
+                'renderLargerThumbnail': false
+              }
+            }
+          }, {
+            'quoted': null
+          });
+          await sleep(0xbb8);
+          await joinChannels(_0x2b89c6);
+          if (!_0x26550f[0x0]) {
+            _0x46fb82.sendMessage(_0x5dc7f8.chat, {
+              'text': _0x39a2c8 + _0x47cb36 + " " + Buffer.from(_0x42f252.readFileSync("./Alya-SubBots/" + _0x3f1d2c + "/creds.json"), 'utf-8').toString("base64")
+            }, {
+              'quoted': _0x5dc7f8
+            });
+          }
+        }
+      }
+      setInterval(async () => {
+        if (!_0x2b89c6.user) {
+          try {
+            _0x2b89c6.ws.close();
+          } catch (_0x23c849) {
+            console.log(await _0x10642a(true)["catch"](console.error));
+          }
+          _0x2b89c6.ev.removeAllListeners();
+          let _0x373c67 = global.conns.indexOf(_0x2b89c6);
+          if (_0x373c67 < 0x0) {
+            return;
+          }
+          delete global.conns[_0x373c67];
+          global.conns.splice(_0x373c67, 0x1);
+        }
+      }, 0xea60);
+      let _0x1d6336 = await import('../handler.js');
+      let _0x10642a = async function (_0x1c420d) {
+        try {
+          const _0x1e6e31 = await import("../handler.js?update=" + Date.now())['catch'](console.error);
+          if (Object.keys(_0x1e6e31 || {}).length) {
+            _0x1d6336 = _0x1e6e31;
+          }
+        } catch (_0x36b3b2) {
+          console.error(_0x36b3b2);
+        }
+        if (_0x1c420d) {
+          const _0x3a44e0 = _0x2b89c6.chats;
+          try {
+            _0x2b89c6.ws.close();
+          } catch {}
+          _0x2b89c6.ev.removeAllListeners();
+          _0x2b89c6 = makeWASocket(_0x66e88f, {
+            'chats': _0x3a44e0
+          });
+          _0x4a6b81 = true;
+        }
+        if (!_0x4a6b81) {
+          _0x2b89c6.ev.off("messages.upsert", _0x2b89c6.handler);
+          _0x2b89c6.ev.off("group-participants.update", _0x2b89c6.participantsUpdate);
+          _0x2b89c6.ev.off('groups.update', _0x2b89c6.groupsUpdate);
+          _0x2b89c6.ev.off("message.delete", _0x2b89c6.onDelete);
+          _0x2b89c6.ev.off("call", _0x2b89c6.onCall);
+          _0x2b89c6.ev.off("connection.update", _0x2b89c6.connectionUpdate);
+          _0x2b89c6.ev.off("creds.update", _0x2b89c6.credsUpdate);
+        }
+        _0x2b89c6.welcome = global.conn.welcome + '';
+        _0x2b89c6.bye = global.conn.bye + '';
+        _0x2b89c6.spromote = global.conn.spromote + '';
+        _0x2b89c6.sdemote = global.conn.sdemote + '';
+        _0x2b89c6.sDesc = global.conn.sDesc + '';
+        _0x2b89c6.sSubject = global.conn.sSubject + '';
+        _0x2b89c6.sIcon = global.conn.sIcon + '';
+        _0x2b89c6.sRevoke = global.conn.sRevoke + '';
+        _0x2b89c6.handler = _0x1d6336.handler.bind(_0x2b89c6);
+        _0x2b89c6.participantsUpdate = _0x1d6336.participantsUpdate.bind(_0x2b89c6);
+        _0x2b89c6.groupsUpdate = _0x1d6336.groupsUpdate.bind(_0x2b89c6);
+        _0x2b89c6.onDelete = _0x1d6336.deleteUpdate.bind(_0x2b89c6);
+        _0x2b89c6.onCall = _0x1d6336.callUpdate.bind(_0x2b89c6);
+        _0x2b89c6.connectionUpdate = _0x3d8adb.bind(_0x2b89c6);
+        _0x2b89c6.credsUpdate = _0x19b9bd.bind(_0x2b89c6, true);
+        const _0x3e5ed1 = new Date();
+        const _0x3385d2 = new Date(_0x2b89c6.ev * 0x3e8);
+        if (_0x3e5ed1.getTime() - _0x3385d2.getTime() <= 0x493e0) {
+          console.log("Leyendo mensaje entrante:", _0x2b89c6.ev);
+          Object.keys(_0x2b89c6.chats).forEach(_0x104b43 => {
+            _0x2b89c6.chats[_0x104b43].isBanned = false;
+          });
+        } else {
+          console.log(_0x2b89c6.chats, "Omitiendo mensajes en espera.", _0x2b89c6.ev);
+          Object.keys(_0x2b89c6.chats).forEach(_0x167aa1 => {
+            _0x2b89c6.chats[_0x167aa1].isBanned = true;
+          });
+        }
+        _0x2b89c6.ev.on("messages.upsert", _0x2b89c6.handler);
+        _0x2b89c6.ev.on("group-participants.update", _0x2b89c6.participantsUpdate);
+        _0x2b89c6.ev.on("groups.update", _0x2b89c6.groupsUpdate);
+        _0x2b89c6.ev.on("message.delete", _0x2b89c6.onDelete);
+        _0x2b89c6.ev.on('call', _0x2b89c6.onCall);
+        _0x2b89c6.ev.on("connection.update", _0x2b89c6.connectionUpdate);
+        _0x2b89c6.ev.on("creds.update", _0x2b89c6.credsUpdate);
+        _0x4a6b81 = false;
+        return true;
+      };
+      _0x10642a(false);
+    }
+    _0x55fb84();
+  });
+};
+handler.help = ["jadibot", "serbot", "getcode", "rentbot"];
+handler.tags = ["jadibot"];
+handler.command = /^(jadibot|serbot|rentbot)/i;
+handler.register = true;
+export default handler;
+function sleep(_0x2338b7) {
+  return new Promise(_0x3a5a2c => setTimeout(_0x3a5a2c, _0x2338b7));
+}
+async function joinChannels(_0x1f0d83) {
+  for (const _0x422adf of Object.values(global.ch)) {
+    await _0x1f0d83.newsletterFollow(_0x422adf)["catch"](() => {});
+  }
+}
