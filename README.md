@@ -1,5 +1,13 @@
 <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&height=150&section=header&text=Bienvenidos%20-%20Fenix%20Bot%20💛&fontSize=30&fontColor=FFFFFF&animation=fadeIn" width="100%"/> 
 
+            <div class="button-wrapper">
+                <img src="https://files.catbox.moe/yyb6yl.jpg" alt="WhatsApp">
+                <a href="https://chat.whatsapp.com/HwcDg23QEwhIXc73wL0tKj" style="text-decoration: none;">
+                    <button  class="channel">【✰𝕮𝖗𝖔𝖜𝕭𝖔𝖙 - 𝕲𝖊𝖓𝖊𝖗𝖆𝖑⍟】</button>
+                </a>
+            </div>
+
+
 > ⌛ Versión Actual: 1.9.0
 
 ## 💛 **`F E N I X - B O T`**
